@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import SearchForm from "./SearchForm";
+import SearchImg from "./SearchImg";
+import ImgList from "./ImgList";
+import React, { useState } from "react";
+
+
 
 function App() {
+  const [image, setImage] = useState([]);
+
+  const handleSubmit = async (event) => {
+    // console.log(e);
+    const res = await SearchImg(event);
+    setImage(res) //inputda tapmaq ucun function
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SearchForm search={handleSubmit} />
+      <ImgList imgProps={image} />
     </div>
   );
 }
